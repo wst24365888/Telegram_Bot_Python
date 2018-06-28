@@ -1,5 +1,6 @@
 import json
 import requests
+import os
 
 TOKEN = os.environ['TELEGRAM_TOKEN']
 URL = "https://api.telegram.org/bot{}/".format(TOKEN)
