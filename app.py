@@ -18,7 +18,7 @@ def meteor_top_5():
     resp = requests.get(url)
     soup = BeautifulSoup(resp.text, 'html.parser')
 
-    meteor_titles = soup.find_all(ng-show="article.link == ''")
+    meteor_titles = soup.find_all('div', 'header ng-binding')
     meteor_links = soup.find_all('a', 'item ng-scope')
 
     meteor_article = []
