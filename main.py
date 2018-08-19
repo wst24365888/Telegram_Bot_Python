@@ -1,8 +1,10 @@
+import os
 import telebot
+from flask import Flask, request
 
-API_TOKEN = os.environ['TELEGRAM_TOKEN']
+TOKEN = os.environ['TELEGRAM_TOKEN']
 
-bot = telebot.TeleBot(API_TOKEN)
+bot = telebot.TeleBot(TOKEN)
 
 # Handle '/start' and '/help'
 @bot.message_handler(commands=['help', 'start'])
@@ -14,6 +16,7 @@ def send_welcome(message):
 @bot.message_handler(func=lambda message: True)
 def echo_message(message):
     bot.reply_to(message, message.text)
+
 
 @server.route("/")
 def webhook():
