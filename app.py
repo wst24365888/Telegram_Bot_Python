@@ -10,76 +10,23 @@ bot = telebot.TeleBot(TOKEN)
 
 server = Flask(__name__)
 
+def meteor_top_5():
 
-def newtalk_news():
+    reply = 'Meteor 熱門文章 Top 5\n\n'
 
-    reply = 'NewTalk 即時新聞\n\n'
-
-    url = 'http://newtalk.tw/news/summary/today'
-    resp = requests.get(url)
-    resp.encoding = 'utf-8'
-    soup = BeautifulSoup(resp.text, 'html.parser')
-
-    newtalk_block_1 = soup.find_all('div', 'news-title')
-    newtalk_block_2 = soup.find_all('div', 'text col-md-8 col-sm-8 col-xs-6')
-
-    newtalk_article = []
-
-    for i in range(2):
-        newtalk_article.append([newtalk_block_1[i].text, newtalk_block_1[i].find('a')['href']])
-
-    for i in range(3):
-        newtalk_article.append([newtalk_block_2[i].find('div', 'news_title').text.strip(), newtalk_block_2[i].find('a')['href']])
-
-    for index, item in enumerate(newtalk_article):
-        reply += '{}. {}\n{}\n\n'.format(index + 1, item[0], item[1])
-
-    reply += '離開: /leave'
-
-    return reply
-
-
-def ptt_top_5():
-
-    reply = 'PTT 熱門文章 TOP 5\n\n'
-
-    url = 'https://disp.cc/m/'
+    url = 'https://meteor.today/b/all'
     resp = requests.get(url)
     soup = BeautifulSoup(resp.text, 'html.parser')
 
-    ptt_titles = soup.find_all('div', 'ht_title')
-    ptt_links = soup.find_all('a')
+    meteor_titles = soup.find_all(ng-show="article.link == ''")
+    meteor_links = soup.find_all('a', 'item ng-scope')
 
-    ptt_article = []
+    meteor_article = []
 
     for i in range(5):
-        ptt_article.append([ptt_titles[i].text, 'https://disp.cc/m/' + ptt_links[i]['href']])
+        meteor_article.append([meteor_titles[i].text, 'https://meteor.today' + meteor_links[i]['href']])
 
-    for index, item in enumerate(ptt_article):
-        reply += '{}. {}\n{}\n\n'.format(index + 1, item[0], item[1])
-
-    reply += '離開: /leave'
-
-    return reply
-
-
-def dcard_top_5():
-
-    reply = 'Dcard 熱門文章 Top 5\n\n'
-
-    url = 'https://www.dcard.tw/f'
-    resp = requests.get(url)
-    soup = BeautifulSoup(resp.text, 'html.parser')
-
-    dcard_titles = soup.find_all('h3', 'PostEntry_title_H5o4d PostEntry_unread_2U217')
-    dcard_links = soup.find_all('a', 'PostEntry_root_V6g0r')
-
-    dcard_article = []
-
-    for i in range(5):
-        dcard_article.append([dcard_titles[i].text, 'https://www.dcard.tw' + dcard_links[i]['href']])
-
-    for index, item in enumerate(dcard_article):
+    for index, item in enumerate(meteor_article):
         reply += '{}. {}\n{}\n\n'.format(index + 1, item[0], item[1])
 
     reply += '離開: /leave'
@@ -115,28 +62,14 @@ def get_user_id(user_id):
 def start(message):
     get_user_id(str(message.chat.id))
     print('command: /main_page')
-    bot.reply_to(message, 'Hello, ' + message.from_user.first_name + '.\nHere are some functions:\n/newtalk_news\n/ptt_top_5\n/dcard_top_5')
+    bot.reply_to(message, 'Hello, ' + message.from_user.first_name + '.\nHere are some functions:\n/meteor_top_5')
 
 
-@bot.message_handler(commands=['newtalk_news'])
-def get_newtalk_news(message):
-    get_user_id(str(message.chat.id))
-    print('command: /newtalk_news')
-    bot.reply_to(message, newtalk_news())
-
-
-@bot.message_handler(commands=['ptt_top_5'])
-def get_ptt_top_5(message):
-    get_user_id(str(message.chat.id))
-    print('command: /ptt_top_5')
-    bot.reply_to(message, ptt_top_5())
-
-
-@bot.message_handler(commands=['dcard_top_5'])
+@bot.message_handler(commands=['meteor_top_5'])
 def get_dcard_top_5(message):
     get_user_id(str(message.chat.id))
-    print('command: /dcard_top_5')
-    bot.reply_to(message, dcard_top_5())
+    print('command: /meteor_top_5')
+    bot.reply_to(message, meteor_top_5())
 
 
 @bot.message_handler(func=lambda message: True, content_types=['text'])
