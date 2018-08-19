@@ -43,7 +43,7 @@ def weather():
 
     weather_titles = soup.find('div', 'w01')
 
-    reply += (weather_titles.text).encode(soup.original_encoding)
+    reply += weather_titles.text.encode('gb18030')
     reply += '離開: /leave'
 
     return reply
