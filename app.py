@@ -49,7 +49,7 @@ def weather():
     return reply
 
 
-def google(in):
+def google():
 
     reply = 'Google搜尋如下\n\n'
 
@@ -57,7 +57,7 @@ def google(in):
     google_url = 'https://www.google.com.tw/search'
 
     # 查詢參數
-    my_params = {'q': in}
+    my_params = {'q': 'tnfshroc'}
 
     # 下載 Google 搜尋結果
     r = requests.get(google_url, params = my_params)
