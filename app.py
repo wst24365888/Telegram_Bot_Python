@@ -1,10 +1,10 @@
 import os
 import telebot
-from flask import Flask, request
 
 TOKEN = os.environ['TELEGRAM_TOKEN']
-
 bot = telebot.TeleBot(TOKEN)
+
+server = Flask(__name__)
 
 # Handle '/start' and '/help'
 @bot.message_handler(commands=['help', 'start'])
