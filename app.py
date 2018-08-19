@@ -66,7 +66,7 @@ def start(message):
 
 
 @bot.message_handler(commands=['meteor_top_5'])
-def get_dcard_top_5(message):
+def get_meteor_top_5(message):
     get_user_id(str(message.chat.id))
     print('command: /meteor_top_5')
     bot.reply_to(message, meteor_top_5())
