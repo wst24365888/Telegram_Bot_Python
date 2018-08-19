@@ -33,6 +33,21 @@ def meteor_top_5():
 
     return reply
 
+def weather():
+
+    reply = 'Weather\n\n'
+
+    url = 'https://www.cwb.gov.tw/V7/forecast/txt/w01.htm'
+    resp = requests.get(url)
+    soup = BeautifulSoup(resp.text, 'html.parser')
+
+    weather_titles = soup.find('div', 'w01')
+
+    reply += weather_titles.text
+    reply += '離開: /leave'
+
+    return reply
+
 def get_user_id(user_id):
 
     print(user_id)
@@ -71,6 +86,12 @@ def get_meteor_top_5(message):
     print('command: /meteor_top_5')
     bot.reply_to(message, meteor_top_5())
 
+
+@bot.message_handler(commands=['weather'])
+def get_weather(message):
+    get_user_id(str(message.chat.id))
+    print('command: /weather')
+    bot.reply_to(message, weather())
 
 @bot.message_handler(func=lambda message: True, content_types=['text'])
 def echo_message(message):
