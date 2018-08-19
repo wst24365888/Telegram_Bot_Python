@@ -35,15 +35,15 @@ def meteor_top_5():
 
 def weather():
 
-    reply = 'Weather\n\n'
+    reply = 'Weather'
 
     url = 'https://www.cwb.gov.tw/V7/forecast/txt/w01.htm'
     resp = requests.get(url)
+    resp.encoding = 'big5-hkscs'
     soup = BeautifulSoup(resp.text, 'html.parser')
 
     weather_titles = soup.find('div', 'w01')
-
-    reply += weather_titles.text.encode('gb18030')
+    reply += weather_titles.text
     reply += '離開: /leave'
 
     return reply
