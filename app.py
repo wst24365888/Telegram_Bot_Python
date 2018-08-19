@@ -77,7 +77,7 @@ def get_user_id(user_id):
 def start(message):
     get_user_id(str(message.chat.id))
     print('command: /main_page')
-    bot.reply_to(message, 'Hello, ' + message.from_user.first_name + '.\nHere are some functions:\n/meteor_top_5')
+    bot.reply_to(message, 'Hello, ' + message.from_user.first_name + '.\n這裡有部分功能可以嘗試><\n/meteor_top_5\n/weather')
 
 
 @bot.message_handler(commands=['meteor_top_5'])
