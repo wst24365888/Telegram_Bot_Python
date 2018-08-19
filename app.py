@@ -39,11 +39,11 @@ def weather():
 
     url = 'https://www.cwb.gov.tw/V7/forecast/txt/w01.htm'
     resp = requests.get(url)
-    soup = BeautifulSoup(resp.text, 'html.parser', fromEncoding='utf-8')
+    soup = BeautifulSoup(resp.text, 'html.parser')
 
     weather_titles = soup.find('div', 'w01')
 
-    reply += weather_titles.text
+    reply += (weather_titles.text).encode(soup.original_encoding)
     reply += '離開: /leave'
 
     return reply
