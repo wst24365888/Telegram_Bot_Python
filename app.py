@@ -145,6 +145,8 @@ def echo_message(message):
     print(message.text)
     bot.reply_to(message, message.text)
 
+bot.polling()
+
 
 @server.route('/' + TOKEN, methods=['POST'])
 def getMessage():
