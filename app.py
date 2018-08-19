@@ -39,7 +39,7 @@ def weather():
 
     url = 'https://www.cwb.gov.tw/V7/forecast/txt/w01.htm'
     resp = requests.get(url)
-    soup = BeautifulSoup(resp.text, 'html.parser', fromEncoding='gb18030')
+    soup = BeautifulSoup(resp.text, 'html.parser', fromEncoding='utf-8')
 
     weather_titles = soup.find('div', 'w01')
 
