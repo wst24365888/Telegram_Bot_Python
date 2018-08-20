@@ -125,6 +125,14 @@ def get_weather(message):
     get_user_id(str(message.chat.id))
     print('command: /weather')
     bot.reply_to(message, weather())
+    
+    
+@bot.message_handler(commands=['google'])
+def get_google(message):
+    get_user_id(str(message.chat.id))
+    print('command: /google')
+    bot.reply_to(message, google())
+    
 
 @bot.message_handler(func=lambda message: True, content_types=['text'])
 def echo_message(message):
@@ -132,7 +140,7 @@ def echo_message(message):
     print(message.text)
     bot.reply_to(message, message.text)
 
-bot.polling()
+
 
 
 @server.route('/' + TOKEN, methods=['POST'])
