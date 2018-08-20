@@ -3,6 +3,7 @@ import telebot
 from flask import Flask, request
 import requests
 from bs4 import BeautifulSoup
+import json
 
 
 TOKEN = os.environ['TELEGRAM_TOKEN']
@@ -23,6 +24,27 @@ def weather():
     reply += weather_titles.text
     reply += '離開: /leave'
 
+    return reply
+
+
+def tbike():
+
+    reply = 'T-Bike停放站目前資料:\n'
+
+    r = requests.get('http://tbike.tainan.gov.tw:8081/Service/StationStatus/Json')
+    r.json()
+    hj = json.loads(r)
+
+    for i in range(len(hj)):
+    reply += i + '.'
+    reply += '\n站名:' + hj[i]['StationName']
+    reply += '\n站地址:' + hj[i]['Address']
+    reply += '\n可借數量:' + hj[i]['AvaliableBikeCount']
+    reply += '\n可還數量:' + hj[i]['AvaliableSpaceCount']
+    reply += '\n更新時間:' + hj[i]['UpdateTime']
+
+    
+    reply += '\n離開: /leave'
     return reply
 
 
@@ -63,6 +85,13 @@ def get_weather(message):
     get_user_id(str(message.chat.id))
     print('command: /weather')
     bot.reply_to(message, weather())
+
+
+@bot.message_handler(commands=['tbike'])
+def get_tbike(message):
+    get_user_id(str(message.chat.id))
+    print('command: /tbike')
+    bot.reply_to(message, tbike())
 
 
 @bot.message_handler(func=lambda message: True, content_types=['text'])
