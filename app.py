@@ -48,6 +48,28 @@ def tnfshnew():
     return reply
 
 
+def meteorhot():
+
+    reply = ''
+
+    url = 'https://meteor.today/b/all'
+    resp = requests.get(url)
+    resp.encoding = 'utf8'
+    soup = BeautifulSoup(resp.text, 'html.parser')
+
+    link = soup.find_all('a', 'item ng-scope')
+    title = soup.find_all('span', 'ng-binding')
+
+    for i in range(10):
+        print('https://meteor.today' + link[i].find('a').string.strip('\n').strip(' '))
+        print(title[i].string.strip('\n').strip(' '))
+
+
+    reply += '\n\n離開: /leave'
+
+    return reply
+
+
 def get_user_id(user_id):
 
     print(user_id)
@@ -95,6 +117,13 @@ def get_tnfshnew(message):
     get_user_id(str(message.chat.id))
     print('command: /tnfshnew')
     bot.reply_to(message, tnfshnew())
+
+
+@bot.message_handler(commands=['meteorhot'])
+def get_meteorhot(message):
+    get_user_id(str(message.chat.id))
+    print('command: /meteorhot')
+    bot.reply_to(message, meteorhot())
 
 
 @bot.message_handler(func=lambda message: True, content_types=['text'])
