@@ -40,12 +40,10 @@ def tnfshnew():
 
     for i in range(10):
         reply += str(i) + '.'
-        reply += sesoup[i].find('a').string + '\n'
-        reply += sesoup[i].find('a')['href'] + '\n'
-        print(sesoup[i].find('a').string)
-        print(sesoup[i].find('a')['href'])
+        reply += sesoup[i].find('a').string.strip('\n') + '\n'
+        reply += sesoup[i].find('a')['href'].strip('\n') + '\n'
 
-    reply += '離開: /leave'
+    reply += '\n\n離開: /leave'
 
     return reply
 
