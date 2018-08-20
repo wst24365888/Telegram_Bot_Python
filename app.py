@@ -74,9 +74,10 @@ def google():
         items = soup.select('div.g > h3.r > a[href^="/url"]')
         for i in items:
             # 標題
-            reply += "標題：" + i.text
+            reply += i + ".\n" + "標題：" + i.text + "\n"
             # 網址
-            reply += "網址：" + i.get('href')
+            reply += "網址：" + i.get('href') + "\n"
+            reply += "離開： /leave"
 
     return reply
 
