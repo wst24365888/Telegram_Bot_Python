@@ -39,7 +39,7 @@ def tnfshnew():
     sesoup = soup.find_all('span', 'ptname ')
 
     for i in range(10):
-        reply += i + '.'
+        reply += str(i) + '.'
         reply += sesoup[i].text + '\n'
         print(sesoup[i].text)
 
@@ -100,7 +100,7 @@ def echo_message(message):
     print(message.text)
     bot.reply_to(message, message.text)
 
-bot.polling()
+
 
 
 @server.route('/' + TOKEN, methods=['POST'])
