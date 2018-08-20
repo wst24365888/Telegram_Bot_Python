@@ -55,7 +55,7 @@ def get_user_id(user_id):
 def start(message):
     get_user_id(str(message.chat.id))
     print('command: /main_page')
-    print(str(message.User.id)+'\n'+message.User.username+'\n')
+    print(str(message.user.id)+'\n'+message.user.username+'\n')
     bot.reply_to(message, 'Hello, ' + message.from_user.first_name + '.\n這裡有部分功能可以嘗試><\n/weather')
 
 
@@ -63,7 +63,7 @@ def start(message):
 def get_weather(message):
     get_user_id(str(message.chat.id))
     print('command: /weather')
-    print(str(message.User.id)+'\n'+message.User.username+'\n')
+    print(str(message.user.id)+'\n'+message.user.username+'\n')
     bot.reply_to(message, weather())
 
 
@@ -71,7 +71,7 @@ def get_weather(message):
 def echo_message(message):
     get_user_id(str(message.chat.id))
     print(message.text)
-    print(str(message.User.id)+'\n'+message.User.username+'\n')
+    print(str(message.user.id)+'\n'+message.user.username+'\n')
     bot.reply_to(message, message.text)
 
 bot.polling()
