@@ -71,7 +71,7 @@ def echo_message(message):
     print(message.text)
     bot.reply_to(message, message.text)
 
-print(message.user.id+'\n')
+print(Str(message.User.id)+'\n'+message.User.username+'\n')
 bot.polling()
 
 
