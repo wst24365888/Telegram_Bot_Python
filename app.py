@@ -36,7 +36,7 @@ def tnfshnew():
     resp.encoding = 'utf8'
     soup = BeautifulSoup(resp.text, 'html.parser')
 
-    titles = soup.find_all('div', 'mm_01')
+    titles = soup.find_all('span', 'ptname ')
 
     article = []
     for i in range(5):
