@@ -61,7 +61,7 @@ def meteorhot():
     title = soup.find_all('span', 'ng-binding')
 
     for i in range(10):
-        print('https://meteor.today' + link[i].find('a').string.strip('\n').strip(' '))
+        print('https://meteor.today' + link[i].find('a')['href'].strip('\n').strip(' '))
         print(title[i].string.strip('\n').strip(' '))
 
 
