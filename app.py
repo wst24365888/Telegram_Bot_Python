@@ -33,15 +33,14 @@ def tbike():
 
     r = requests.get('http://tbike.tainan.gov.tw:8081/Service/StationStatus/Json')
     r.json()
-    hj = json.load(r)
 
-    for i in range(len(hj)):
+    for i in range(len(r)):
         reply += i + '.'
-        reply += '\n站名:' + hj[i]['StationName']
-        reply += '\n站地址:' + hj[i]['Address']
-        reply += '\n可借數量:' + hj[i]['AvaliableBikeCount']
-        reply += '\n可還數量:' + hj[i]['AvaliableSpaceCount']
-        reply += '\n更新時間:' + hj[i]['UpdateTime'] + '\n'
+        reply += '\n站名:' + r[i]['StationName']
+        reply += '\n站地址:' + r[i]['Address']
+        reply += '\n可借數量:' + r[i]['AvaliableBikeCount']
+        reply += '\n可還數量:' + r[i]['AvaliableSpaceCount']
+        reply += '\n更新時間:' + r[i]['UpdateTime'] + '\n'
 
 
     reply += '\n離開: /leave'
