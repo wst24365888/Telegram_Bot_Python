@@ -39,7 +39,7 @@ def tnfshnew():
     sesoup = soup.find_all('span', 'ptname ')
 
     for i in range(10):
-        print(sesoup[i])
+        print(sesoup[i].text)
 
     reply += '離開: /leave'
 
