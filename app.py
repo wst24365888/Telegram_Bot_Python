@@ -157,5 +157,5 @@ def webhook():
 
 
 if __name__ == "__main__":
-    app.debug = True
+    server.debug = True
     server.run(host = '0.0.0.0',port=5005)
