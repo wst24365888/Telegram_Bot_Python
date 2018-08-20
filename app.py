@@ -79,7 +79,10 @@ def get_user_id(user_id):
 def start(message):
     get_user_id(str(message.chat.id))
     print('command: /main_page')
-    bot.reply_to(message, 'Hello, ' + message.from_user.first_name + '.\n這裡有部分功能可以嘗試><\n/weather')
+    helpmess = '.\n這裡有部分功能可以嘗試><'
+    helpmess += '\n/weather  - 查詢天氣小幫手'
+    helpmess += '\n/tnfshnew - 查詢南一中新訊息'
+    bot.reply_to(message, 'Hi, ' + message.from_user.first_name + helpmess)
 
 
 @bot.message_handler(commands=['weather'])
