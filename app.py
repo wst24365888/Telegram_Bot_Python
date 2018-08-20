@@ -112,7 +112,7 @@ def getMessage():
 @server.route("/")
 def webhook():
     bot.remove_webhook()
-    bot.set_webhook(url='https://littlechin-tg-python.herokuapp.com/callback' + TOKEN)
+    bot.set_webhook(url='https://littlechin-tg-python.herokuapp.com/webhook' + TOKEN)
     print('success')
     return "!", 200
 
