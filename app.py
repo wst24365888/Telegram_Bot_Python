@@ -39,6 +39,8 @@ def tnfshnew():
     sesoup = soup.find_all('span', 'ptname ')
 
     for i in range(10):
+        reply += i + '.'
+        reply += sesoup[i].text + '\n'
         print(sesoup[i].text)
 
     reply += '離開: /leave'
