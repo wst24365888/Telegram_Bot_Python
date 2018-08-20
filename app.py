@@ -36,9 +36,11 @@ def tnfshnew():
     resp.encoding = 'utf8'
     soup = BeautifulSoup(resp.text, 'html.parser')
 
-    sesoup = soup.find('span', 'ptname ')
+    sesoup = soup.find_all('span', 'ptname ')
 
-    print(sesoup)
+    for i in range(10):
+        print(sesoup[i])
+
     reply += '離開: /leave'
 
     return reply
