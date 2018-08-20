@@ -10,6 +10,25 @@ bot = telebot.TeleBot(TOKEN)
 server = Flask(__name__)
 
 
+def tbike():
+
+    reply = 'T-Bike停放站目前資料:\n'
+
+    r = requests.get('http://tbike.tainan.gov.tw:8081/Service/StationStatus/Json')
+
+    for i in range(55):
+        reply += str(i) + '.'
+        reply += '\n站名:' + str(r.json()[i]['StationName'])
+        reply += '\n站地址:' + str(r.json()[i]['Address'])
+        reply += '\n可借數量:' + str(r.json()[i]['AvaliableBikeCount'])
+        reply += '\n可還數量:' + str(r.json()[i]['AvaliableSpaceCount'])
+        reply += '\n更新時間:' + str(r.json()[i]['UpdateTime']) + '\n'
+
+
+    reply += '\n離開: /leave'
+    return reply
+
+
 def weather():
 
     reply = 'Weather'

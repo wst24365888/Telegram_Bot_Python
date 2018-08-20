@@ -27,23 +27,25 @@ def weather():
     return reply
 
 
-def tbike():
+def tnfshnew():
 
-    reply = 'T-Bike停放站目前資料:\n'
+    reply = ''
 
-    r = requests.get('http://tbike.tainan.gov.tw:8081/Service/StationStatus/Json')
-    r.json()
+    url = 'https://www.tnfsh.tn.edu.tw/files/501-1000-1012-1.php?Lang=zh-tw'
+    resp = requests.get(url)
+    resp.encoding = 'utf8'
+    soup = BeautifulSoup(resp.text, 'html.parser')
 
-    for i in range(55):
-        reply += str(i) + '.'
-        reply += '\n站名:' + str(r.json()[i]['StationName'])
-        reply += '\n站地址:' + str(r.json()[i]['Address'])
-        reply += '\n可借數量:' + str(r.json()[i]['AvaliableBikeCount'])
-        reply += '\n可還數量:' + str(r.json()[i]['AvaliableSpaceCount'])
-        reply += '\n更新時間:' + str(r.json()[i]['UpdateTime']) + '\n'
+    titles = soup.find_all('a', target=false)
 
+    article = []
+    for i in range(5):
+        article.append([titles.text, titles[i]['href']])
+    for index, item in enumerate(titles):
+        reply += '{}. {}\n{}\n\n'.format(index + 1, item[0], item[1])
 
-    reply += '\n離開: /leave'
+    reply += '離開: /leave'
+
     return reply
 
 
