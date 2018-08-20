@@ -39,7 +39,7 @@ def tnfshnew():
     sesoup = soup.find_all('span', 'ptname ')
 
     for i in range(10):
-        reply += str(i) + '.'
+        reply += str(i+1) + '.'
         reply += sesoup[i].find('a').string.strip('\n')
         reply += sesoup[i].find('a')['href'].strip('\n') + '\n'
 
