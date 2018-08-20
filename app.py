@@ -88,11 +88,11 @@ def get_weather(message):
     bot.reply_to(message, weather())
 
 
-@bot.message_handler(commands=['tbike'])
-def get_tbike(message):
+@bot.message_handler(commands=['tnfshnew'])
+def get_tnfshnew(message):
     get_user_id(str(message.chat.id))
-    print('command: /tbike')
-    bot.reply_to(message, tbike())
+    print('command: /tnfshnew')
+    bot.reply_to(message, tnfshnew())
 
 
 @bot.message_handler(func=lambda message: True, content_types=['text'])
