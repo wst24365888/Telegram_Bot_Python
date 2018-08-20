@@ -36,11 +36,11 @@ def tnfshnew():
     resp.encoding = 'utf8'
     soup = BeautifulSoup(resp.text, 'html.parser')
 
-    titles = soup.find_all('a', target=false)
+    titles = soup.find_all("div", "mm_01")
 
     article = []
     for i in range(5):
-        article.append([titles.text, titles[i]['href']])
+        article.append([titles.text, titles[i].find('a')['href']])
     for index, item in enumerate(titles):
         reply += '{}. {}\n{}\n\n'.format(index + 1, item[0], item[1])
 
