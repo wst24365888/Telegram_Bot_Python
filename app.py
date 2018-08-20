@@ -36,11 +36,12 @@ def tbike():
     hj = json.loads(r)
 
     for i in range(len(hj)):
-    reply += '\n站名:' + hj[i]['StationName']
-    reply += '\n站地址:' + hj[i]['Address']
-    reply += '\n可借數量:' + hj[i]['AvaliableBikeCount']
-    reply += '\n可還數量:' + hj[i]['AvaliableSpaceCount']
-    reply += '\n更新時間:' + hj[i]['UpdateTime'] + '\n'
+        reply += i + '.'
+        reply += '\n站名:' + hj[i]['StationName']
+        reply += '\n站地址:' + hj[i]['Address']
+        reply += '\n可借數量:' + hj[i]['AvaliableBikeCount']
+        reply += '\n可還數量:' + hj[i]['AvaliableSpaceCount']
+        reply += '\n更新時間:' + hj[i]['UpdateTime'] + '\n'
 
 
     reply += '\n離開: /leave'
