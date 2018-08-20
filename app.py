@@ -40,7 +40,7 @@ def tnfshnew():
 
     article = []
     for i in range(5):
-        article.append([titles.text, titles[i].find('a')['href']])
+        article.append([titles[i].find('a').text, titles[i].find('a')['href']])
     for index, item in enumerate(titles):
         reply += '{}. {}\n{}\n\n'.format(index + 1, item[0], item[1])
 
