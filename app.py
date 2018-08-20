@@ -19,7 +19,7 @@ def weather():
     resp.encoding = 'utf8'
     soup = BeautifulSoup(resp.text, 'html.parser')
 
-    weather_titles = soup.find('div', 'w01')
+    weather_titles = soup.find('div', 'w01', 'pre')
     reply += weather_titles.text
     reply += '離開: /leave'
 
@@ -71,7 +71,7 @@ def echo_message(message):
     print(message.text)
     bot.reply_to(message, message.text)
 
-print(Str(message.User.id)+'\n'+message.User.username+'\n')
+print(str(message.User.id)+'\n'+message.User.username+'\n')
 bot.polling()
 
 
