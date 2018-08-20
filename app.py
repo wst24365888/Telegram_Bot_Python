@@ -36,13 +36,8 @@ def tnfshnew():
     resp.encoding = 'utf8'
     soup = BeautifulSoup(resp.text, 'html.parser')
 
-    titles = soup.find_all('span', 'ptname ')
+    sesoup = soup.find_all('span', 'ptname ')
 
-    article = []
-    for i in range(5):
-        article.append([titles[i].text, titles[i]['href']])
-    for index, item in enumerate(titles):
-        reply += '{}. {}\n{}\n\n'.format(index + 1, item[0], item[1])
 
     reply += '離開: /leave'
 
@@ -101,7 +96,7 @@ def echo_message(message):
     print(message.text)
     bot.reply_to(message, message.text)
 
-bot.polling()
+
 
 
 @server.route('/' + TOKEN, methods=['POST'])
@@ -114,6 +109,7 @@ def getMessage():
 def webhook():
     bot.remove_webhook()
     bot.set_webhook(url='https://littlechin-tg-python.herokuapp.com/' + TOKEN)
+    print('success')
     return "!", 200
 
 
