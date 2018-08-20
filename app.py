@@ -40,7 +40,8 @@ def tnfshnew():
 
     for i in range(10):
         reply += str(i) + '.'
-        reply += sesoup[i].text + '\n'
+        reply += sesoup[i].find('a').string + '\n'
+        reply += sesoup[i].find('a')['href'] + '\n'
         print(sesoup[i].find('a').string)
         print(sesoup[i].find('a')['href'])
 
