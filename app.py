@@ -33,7 +33,7 @@ def tbike():
 
     r = requests.get('http://tbike.tainan.gov.tw:8081/Service/StationStatus/Json')
     r.json()
-    hj = json.loads(r)
+    hj = str(json.loads(r))
 
     for i in range(len(hj)):
         reply += i + '.'
