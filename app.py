@@ -36,11 +36,11 @@ def tbike():
 
     for i in range(55):
         reply += str(i) + '.'
-        reply += '\n站名:' + str(r[i]['StationName'])
-        reply += '\n站地址:' + str(r[i]['Address'])
-        reply += '\n可借數量:' + str(r[i]['AvaliableBikeCount'])
-        reply += '\n可還數量:' + str(r[i]['AvaliableSpaceCount'])
-        reply += '\n更新時間:' + str(r[i]['UpdateTime']) + '\n'
+        reply += '\n站名:' + str(r.json()[i]['StationName'])
+        reply += '\n站地址:' + str(r.json()[i]['Address'])
+        reply += '\n可借數量:' + str(r.json()[i]['AvaliableBikeCount'])
+        reply += '\n可還數量:' + str(r.json()[i]['AvaliableSpaceCount'])
+        reply += '\n更新時間:' + str(r.json()[i]['UpdateTime']) + '\n'
 
 
     reply += '\n離開: /leave'
