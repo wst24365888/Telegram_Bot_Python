@@ -35,7 +35,7 @@ def tbike():
     r.json()
 
     for i in range(50):
-        reply += i + '.'
+        reply += str(i) + '.'
         reply += '\n站名:' + r[i]['StationName']
         reply += '\n站地址:' + r[i]['Address']
         reply += '\n可借數量:' + r[i]['AvaliableBikeCount']
