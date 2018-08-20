@@ -74,10 +74,10 @@ def google():
         items = soup.select('div.g > h3.r > a[href^="/url"]')
         for i in items:
             # 標題
-            reply += i + ".\n" + "標題：" + i.text + "\n"
+            reply += i + '.\n標題：' + i.text
             # 網址
-            reply += "網址：" + i.get('href') + "\n"
-            reply += "離開： /leave"
+            reply += '\n網址：' + i.get('href')
+            reply += '\n\n離開： /leave'
 
     return reply
 
@@ -126,14 +126,14 @@ def get_weather(message):
     get_user_id(str(message.chat.id))
     print('command: /weather')
     bot.reply_to(message, weather())
-    
-    
+
+
 @bot.message_handler(commands=['google'])
 def get_google(message):
     get_user_id(str(message.chat.id))
     print('command: /google')
     bot.reply_to(message, google())
-    
+
 
 @bot.message_handler(func=lambda message: True, content_types=['text'])
 def echo_message(message):
