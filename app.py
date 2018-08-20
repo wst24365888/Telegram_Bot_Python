@@ -42,6 +42,7 @@ def tnfshnew():
         reply += str(i) + '.'
         reply += sesoup[i].text + '\n'
         print(sesoup[i].text)
+        print(sesoup[i]['href'])
 
     reply += '離開: /leave'
 
