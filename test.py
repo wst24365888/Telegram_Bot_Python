@@ -1,14 +1,14 @@
 import os
+
 import telebot
 from flask import Flask, request
 import requests
 from bs4 import BeautifulSoup
 
-
 TOKEN = os.environ['TELEGRAM_TOKEN']
 bot = telebot.TeleBot(TOKEN)
-
 server = Flask(__name__)
+
 
 def weather():
 
@@ -71,8 +71,6 @@ def echo_message(message):
     print(message.text)
     bot.reply_to(message, message.text)
 
-bot.polling()
-
 
 @server.route('/' + TOKEN, methods=['POST'])
 def getMessage():
@@ -88,5 +86,4 @@ def webhook():
 
 
 if __name__ == "__main__":
-    server.debug = True
-    server.run(host = '0.0.0.0',port=5005)
+    server.run(host="0.0.0.0", port=int(os.environ.get('PORT', 5000)))
