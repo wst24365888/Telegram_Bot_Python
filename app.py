@@ -61,7 +61,7 @@ def meteorhot():
     title = soup.find_all('span', 'ng-binding')
 
     for i in range(10):
-        print(link[i])
+        
         print(title[i])
 
 
