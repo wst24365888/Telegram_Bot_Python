@@ -101,6 +101,7 @@ def echo_message(message):
     bot.reply_to(message, message.text)
 
 
+bot.polling()
 
 
 @server.route('/' + TOKEN, methods=['POST'])
@@ -112,7 +113,7 @@ def getMessage():
 @server.route("/")
 def webhook():
     bot.remove_webhook()
-    bot.set_webhook(url='https://littlechin-tg-python.herokuapp.com/webhook' + TOKEN)
+    bot.set_webhook(url='https://littlechin-tg-python.herokuapp.com/' + TOKEN)
     print('success')
     return "!", 200
 
