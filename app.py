@@ -52,8 +52,8 @@ def meteorhot():
 
     reply = ''
 
-    url = 'https://meteor.today/b/all'
-    resp = requests.post(url)
+    url = 'https://meteor.today/article/get_hot_articles'
+    resp = requests.get(url)
     resp.encoding = 'utf8'
     soup = BeautifulSoup(resp.text, 'html.parser')
 
