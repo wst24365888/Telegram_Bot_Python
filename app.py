@@ -61,8 +61,7 @@ def meteorhot():
     title = soup.find_all('span', 'ng-binding')
 
     for i in range(10):
-        print(title[i])
-        print(link[i])
+        print(soup)
 
 
     reply += '\n\n離開: /leave'
