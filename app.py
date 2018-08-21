@@ -53,7 +53,7 @@ def meteorhot():
     reply = ''
 
     url = 'https://meteor.today/b/all'
-    resp = requests.get(url)
+    resp = requests.post(url)
     resp.encoding = 'utf8'
     soup = BeautifulSoup(resp.text, 'html.parser')
 
@@ -61,8 +61,8 @@ def meteorhot():
     title = soup.find_all('span', 'ng-binding')
 
     for i in range(10):
-        
         print(title[i])
+        print(link[i])
 
 
     reply += '\n\n離開: /leave'
