@@ -76,9 +76,8 @@ def kbus239():
     url = 'https://ptx.transportdata.tw/MOTC/v2/Bus/RealTimeNearStop/City/Kaohsiung/239?$format=JSON'
     resp = requests.get(url)
     resp.encoding = 'utf8'
-    resp.json()
 
-    reply += resp
+    reply += str(resp)
     reply += '\n\n離開: /leave'
 
     return reply
