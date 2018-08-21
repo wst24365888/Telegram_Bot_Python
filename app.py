@@ -69,6 +69,21 @@ def meteorhot():
     return reply
 
 
+def kbus239():
+
+    reply = ''
+
+    url = 'https://ptx.transportdata.tw/MOTC/v2/Bus/RealTimeNearStop/City/Kaohsiung/239?$format=JSON'
+    resp = requests.get(url)
+    resp.encoding = 'utf8'
+    resp.json()
+
+    reply += resp
+    reply += '\n\n離開: /leave'
+
+    return reply
+
+
 def get_user_id(user_id):
 
     print(user_id)
@@ -118,11 +133,11 @@ def get_tnfshnew(message):
     bot.reply_to(message, tnfshnew())
 
 
-@bot.message_handler(commands=['meteorhot'])
-def get_meteorhot(message):
+@bot.message_handler(commands=['kbus239'])
+def get_kbus239(message):
     get_user_id(str(message.chat.id))
-    print('command: /meteorhot')
-    bot.reply_to(message, meteorhot())
+    print('command: /kbus239')
+    bot.reply_to(message, kbus239())
 
 
 @bot.message_handler(func=lambda message: True, content_types=['text'])
