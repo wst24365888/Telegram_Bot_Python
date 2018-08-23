@@ -69,7 +69,7 @@ def meteorhot():
     return reply
 
 
-def stoping():
+def workornot():
 
     reply = '停班停課資訊如下\n'
 
@@ -83,7 +83,7 @@ def stoping():
     city = soup.find_all('td', headers="city_Name")
     detail = soup.find_all('td', headers="StopWorkSchool_Info")
 
-    for i in enumerate(city):
+    for i in range(len(city)):
         reply += '\n' + city[i] + ':'
         reply += detail[i]
 
@@ -142,11 +142,11 @@ def get_tnfshnew(message):
     bot.reply_to(message, tnfshnew())
 
 
-@bot.message_handler(commands=['stoping'])
-def get_stoping(message):
+@bot.message_handler(commands=['workornot'])
+def get_workornot(message):
     get_user_id(str(message.chat.id))
-    print('command: /stoping')
-    bot.reply_to(message, stoping())
+    print('command: /workornot')
+    bot.reply_to(message, workornot())
 
 
 @bot.message_handler(func=lambda message: True, content_types=['text'])
