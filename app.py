@@ -163,10 +163,11 @@ if __name__ == "__main__":
     #server.run(host="0.0.0.0", port=int(os.environ.get('PORT', 5000)))
 
     PORT = int(os.environ.get('PORT', '8443'))
-    updater = Updater(TOKEN)
     #add handlers
-    updater.start_webhook(listen="0.0.0.0",
+    bot.start_webhook(listen="0.0.0.0",
                         port=PORT,
                         url_path=TOKEN)
-    updater.bot.set_webhook("https://tgbot-littlechin.herokuapp.com/" + TOKEN)
-    updater.idle()
+    bot.bot.set_webhook("https://tgbot-littlechin.herokuapp.com/" + TOKEN)
+    bot.idle()
+#  set webhook
+#  https://api.telegram.org/bot{$token}/setWebhook?url={$webhook_url}
