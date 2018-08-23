@@ -4,6 +4,8 @@ from flask import Flask, request
 import requests
 from bs4 import BeautifulSoup
 import json
+import re
+from urllib.parse import unquote as decode
 
 
 TOKEN = os.environ['TELEGRAM_TOKEN']
@@ -52,19 +54,26 @@ def meteorhot():
 
     reply = ''
 
-    url = 'https://meteor.today/article/get_hot_articles'
-    resp = requests.post(url)
-    resp.encoding = 'utf8'
-    soup = BeautifulSoup(resp.text, 'html.parser')
+    req_headers = {'User-Agent': 'Mozilla/5.0 (Windows NT 10.0; WOW64; rv:61.0) Gecko/20100101 Firefox/61.0'}
 
-    link = soup.find_all('a', 'item ng-scope')
-    title = soup.find_all('span', 'ng-binding')
+    data = []
 
-    for i in range(10):
-        print(soup)
+    for i in range(5):
+
+        req_data = {"boardId":"all","page":i,"isCollege":False,"pageSize":1}
+
+        url = 'https://meteor.today/article/get_hot_articles'
+        resp = requests.post(url, headers = req_headers, data = req_data)
+        info = decode(resp.json()['result']).replace('false', 'False').replace('true', 'True')
+
+        data.append(eval(info[1:-1]))
+
+    #data = sorted(data, key = lambda element: element['hotness'], reverse = True)
+
+    print(data[0])
 
 
-    reply += '\n\n離開: /leave'
+    reply += '試驗階段\n\n離開: /leave'
 
     return reply
 
@@ -141,6 +150,13 @@ def get_tnfshnew(message):
     get_user_id(str(message.chat.id))
     print('command: /tnfshnew')
     bot.reply_to(message, tnfshnew())
+
+
+@bot.message_handler(commands=['meteorhot'])
+def get_meteorhot(message):
+    get_user_id(str(message.chat.id))
+    print('command: /meteorhot')
+    bot.reply_to(message, meteorhot())
 
 
 @bot.message_handler(commands=['workornot'])
