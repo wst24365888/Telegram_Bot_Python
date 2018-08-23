@@ -84,7 +84,7 @@ def workornot():
     detail = soup.find_all('td', headers="StopWorkSchool_Info")
 
     for i in range(len(city)):
-        reply += '\n*' + city[i].text + '*:'
+        reply += '\n' + city[i].text + ':'
         reply += detail[i].text
 
     reply += '\n\n停班停課資訊來自:https://www.dgpa.gov.tw/typh/daily/nds.html'
@@ -123,11 +123,10 @@ def start(message):
     get_user_id(str(message.chat.id))
     print('command: /main_page')
     helpmess = '.\n這裡有部分功能可以嘗試><'
-    helpmess += '\n/weather  - *查詢天氣小幫手*'
-    helpmess += '\n/tnfshnew - *查詢南一中新訊息*'
-    helpmess += '\n/workornot - *查詢停班課資訊*'
-    mes = 'Hi, ' + message.from_user.first_name + helpmess
-    bot.reply_to(message, mes, parse_mode=telegram.ParseMode.MARKDOWN)
+    helpmess += '\n/weather  - 查詢天氣小幫手'
+    helpmess += '\n/tnfshnew - 查詢南一中新訊息'
+    helpmess += '\n/workornot - 查詢停班課資訊'
+    bot.reply_to(message, 'Hi, ' + message.from_user.first_name + helpmess)
 
 
 @bot.message_handler(commands=['weather'])
@@ -148,7 +147,7 @@ def get_tnfshnew(message):
 def get_workornot(message):
     get_user_id(str(message.chat.id))
     print('command: /workornot')
-    bot.reply_to(message, workornot(), parse_mode=telegram.ParseMode.MARKDOWN)
+    bot.reply_to(message, workornot())
 
 
 @bot.message_handler(func=lambda message: True, content_types=['text'])
