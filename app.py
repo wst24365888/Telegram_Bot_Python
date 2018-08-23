@@ -145,7 +145,7 @@ def echo_message(message):
     print(message.text)
     bot.reply_to(message, message.text)
 
-"""
+
 @server.route('/' + TOKEN, methods=['POST'])
 def getMessage():
     bot.process_new_updates([telebot.types.Update.de_json(request.stream.read().decode("utf-8"))])
@@ -157,17 +157,9 @@ def webhook():
     bot.remove_webhook()
     bot.set_webhook(url='https://tgbot-littlechin.herokuapp.com/' + TOKEN)
     return "!", 200
-"""
+
 
 if __name__ == "__main__":
-    #server.run(host="0.0.0.0", port=int(os.environ.get('PORT', 5000)))
-
-    PORT = int(os.environ.get('PORT', '8443'))
-    #add handlers
-    bot.start_webhook(listen="0.0.0.0",
-                        port=PORT,
-                        url_path=TOKEN)
-    bot.bot.set_webhook("https://tgbot-littlechin.herokuapp.com/" + TOKEN)
-    bot.idle()
+    server.run(host="0.0.0.0", port=int(os.environ.get('PORT', 5000)))
 #  set webhook
 #  https://api.telegram.org/bot{$token}/setWebhook?url={$webhook_url}
