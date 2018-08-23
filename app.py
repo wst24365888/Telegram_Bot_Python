@@ -84,8 +84,8 @@ def workornot():
     detail = soup.find_all('td', headers="StopWorkSchool_Info")
 
     for i in range(len(city)):
-        reply += '\n' + city[i].string + ':'
-        reply += detail[i].string
+        reply += '\n' + city[i].text + ':'
+        reply += detail[i].text
 
     reply += '\n\n停班停課資訊來自:https://www.dgpa.gov.tw/typh/daily/nds.html'
     reply += '\n離開: /leave'
