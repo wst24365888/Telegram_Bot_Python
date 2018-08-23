@@ -69,16 +69,26 @@ def meteorhot():
     return reply
 
 
-def kbus239():
+def stoping():
 
-    reply = ''
+    reply = '停班停課資訊如下\n'
 
-    url = 'https://ptx.transportdata.tw/MOTC/v2/Bus/RealTimeNearStop/City/Kaohsiung/239?$format=JSON'
+    url = 'https://www.dgpa.gov.tw/typh/daily/nds.html'
     resp = requests.get(url)
     resp.encoding = 'utf8'
+    soup = BeautifulSoup(resp.text, 'html.parser')
 
-    print(resp)
-    reply += '\n\n離開: /leave'
+    #sesoup = soup.find('tbody', 'Table_Body')
+
+    city = soup.find_all('td', headers="city_Name")
+    detail = soup.find_all('td', headers="StopWorkSchool_Info")
+
+    for i in enumerate(city):
+        reply += '\n' + city[i] + ':'
+        reply += detail[i]
+
+    reply += '\n\n停班停課資訊來自:https://www.dgpa.gov.tw/typh/daily/nds.html'
+    reply += '\n離開: /leave'
 
     return reply
 
@@ -132,11 +142,11 @@ def get_tnfshnew(message):
     bot.reply_to(message, tnfshnew())
 
 
-@bot.message_handler(commands=['kbus239'])
-def get_kbus239(message):
+@bot.message_handler(commands=['stoping'])
+def get_stoping(message):
     get_user_id(str(message.chat.id))
-    print('command: /kbus239')
-    bot.reply_to(message, kbus239())
+    print('command: /stoping')
+    bot.reply_to(message, stoping())
 
 
 @bot.message_handler(func=lambda message: True, content_types=['text'])
