@@ -133,7 +133,12 @@ def mes_detail(message):
     print('userid:' + str(message.from_user.id))
     print('name:' + str(message.from_user.first_name) + str(message.from_user.last_name))
     print('username:' + str(message.from_user.username))
-
+    #channalid = -1001230375545
+    log = 'chatid:' + str(message.chat.id)
+    log += 'userid:' + str(message.from_user.id)
+    log += 'name:' + str(message.from_user.first_name) + str(message.from_user.last_name)
+    log += 'username:' + str(message.from_user.username)
+    bot.send_message(-1001230375545, )
 
 @bot.message_handler(commands=['start', 'help', 'leave'])
 def start(message):
