@@ -129,7 +129,8 @@ def get_user_id(user_id):
         pass
 '''
 def mes_detail(message):
-    print('userid:' + str(message.chat.id))
+    print('chatid:' + str(message.chat.id))
+    print('username:' + str(message.from_user.username))
 
 
 @bot.message_handler(commands=['start', 'help', 'leave'])
