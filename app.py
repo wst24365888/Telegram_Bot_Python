@@ -42,7 +42,8 @@ def tnfshnew():
 
     for i in range(10):
         reply += str(i+1) + '.'
-        reply += sesoup[i].find('td', text=re.compile("-")).string.strip('\n').strip(' ')
+
+        reply += sesoup[i].re.search('\\d\\d\\d\\d-\\d\\d-\\d\\d', str(sesoup.find_all('td')[i])).strip('\n').strip(' ')
         reply += sesoup[i].find('a').string.strip('\n').strip(' ')
         reply += sesoup[i].find('a')['href'].strip('\n').strip(' ') + '\n'
 
