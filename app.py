@@ -130,6 +130,8 @@ def get_user_id(user_id):
 '''
 def mes_detail(message):
     print('chatid:' + str(message.chat.id))
+    print('userid:' + str(message.from_user.id))
+    print('name:' + str(message.from_user.name))
     print('username:' + str(message.from_user.username))
 
 
