@@ -131,7 +131,7 @@ def get_user_id(user_id):
 def mes_detail(message):
     print('chatid:' + str(message.chat.id))
     print('userid:' + str(message.from_user.id))
-    print('name:' + str(message.from_user.name))
+    print('name:' + str(message.from_user.first_name) + str(message.from_user.last_name))
     print('username:' + str(message.from_user.username))
 
 
