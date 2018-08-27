@@ -38,10 +38,11 @@ def tnfshnew():
     resp.encoding = 'utf8'
     soup = BeautifulSoup(resp.text, 'html.parser')
 
-    sesoup = soup.find_all('span', 'ptname ')
+    sesoup = soup.find_all('span', 'ptname ', limit=10)
 
     for i in range(10):
         reply += str(i+1) + '.'
+        reply += sesoup[i].find('td', string="-").string.strip('\n').strip(' ')
         reply += sesoup[i].find('a').string.strip('\n').strip(' ')
         reply += sesoup[i].find('a')['href'].strip('\n').strip(' ') + '\n'
 
