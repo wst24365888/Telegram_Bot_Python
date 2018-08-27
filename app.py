@@ -103,7 +103,7 @@ def workornot():
 
     return reply
 
-
+'''
 def get_user_id(user_id):
 
     print(user_id)
@@ -127,11 +127,14 @@ def get_user_id(user_id):
             doc_ref.set(doc_to_add)
     except:
         pass
+'''
+def mes_detail(message):
+    print('userid:' + str(message.chat.id))
 
 
 @bot.message_handler(commands=['start', 'help', 'leave'])
 def start(message):
-    get_user_id(str(message.chat.id))
+    mes_detail(message)
     print('command: /main_page')
     helpmess = '.\n這裡有部分功能可以嘗試><'
     helpmess += '\n/weather  - 查詢天氣小幫手'
@@ -142,35 +145,35 @@ def start(message):
 
 @bot.message_handler(commands=['weather'])
 def get_weather(message):
-    get_user_id(str(message.chat.id))
+    print(user_id)
     print('command: /weather')
     bot.reply_to(message, weather())
 
 
 @bot.message_handler(commands=['tnfshnew'])
 def get_tnfshnew(message):
-    get_user_id(str(message.chat.id))
+    print(user_id)
     print('command: /tnfshnew')
     bot.reply_to(message, tnfshnew())
 
 
 @bot.message_handler(commands=['meteorhot'])
 def get_meteorhot(message):
-    get_user_id(str(message.chat.id))
+    print(user_id)
     print('command: /meteorhot')
     bot.reply_to(message, meteorhot())
 
 
 @bot.message_handler(commands=['workornot'])
 def get_workornot(message):
-    get_user_id(str(message.chat.id))
+    print(user_id)
     print('command: /workornot')
     bot.reply_to(message, workornot())
 
-
+#get_user_id(str(message.chat.id))
 @bot.message_handler(func=lambda message: True, content_types=['text'])
 def echo_message(message):
-    get_user_id(str(message.chat.id))
+    print(user_id)
     print(message.text)
     bot.reply_to(message, message.text)
 
