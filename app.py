@@ -135,9 +135,9 @@ def mes_detail(message):
     print('username:' + str(message.from_user.username))
     #channalid = -1001230375545
     log = 'chatid:' + str(message.chat.id)
-    log += 'userid:' + str(message.from_user.id)
-    log += 'name:' + str(message.from_user.first_name) + str(message.from_user.last_name)
-    log += 'username:' + str(message.from_user.username)
+    log += '\nuserid:' + str(message.from_user.id)
+    log += '\nname:' + str(message.from_user.first_name) + '\n' + str(message.from_user.last_name)
+    log += '\nusername:' + str(message.from_user.username)
     bot.send_message(-1001230375545, log)
 
 @bot.message_handler(commands=['start', 'help', 'leave'])
@@ -153,35 +153,35 @@ def start(message):
 
 @bot.message_handler(commands=['weather'])
 def get_weather(message):
-    print(user_id)
+    mes_detail(message)
     print('command: /weather')
     bot.reply_to(message, weather())
 
 
 @bot.message_handler(commands=['tnfshnew'])
 def get_tnfshnew(message):
-    print(user_id)
+    mes_detail(message)
     print('command: /tnfshnew')
     bot.reply_to(message, tnfshnew())
 
 
 @bot.message_handler(commands=['meteorhot'])
 def get_meteorhot(message):
-    print(user_id)
+    mes_detail(message)
     print('command: /meteorhot')
     bot.reply_to(message, meteorhot())
 
 
 @bot.message_handler(commands=['workornot'])
 def get_workornot(message):
-    print(user_id)
+    mes_detail(message)
     print('command: /workornot')
     bot.reply_to(message, workornot())
 
 #get_user_id(str(message.chat.id))
 @bot.message_handler(func=lambda message: True, content_types=['text'])
 def echo_message(message):
-    print(user_id)
+    mes_detail(message)
     print(message.text)
     bot.reply_to(message, message.text)
 
