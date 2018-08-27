@@ -138,7 +138,7 @@ def mes_detail(message):
     log += 'userid:' + str(message.from_user.id)
     log += 'name:' + str(message.from_user.first_name) + str(message.from_user.last_name)
     log += 'username:' + str(message.from_user.username)
-    bot.send_message(-1001230375545, )
+    bot.send_message(-1001230375545, log)
 
 @bot.message_handler(commands=['start', 'help', 'leave'])
 def start(message):
