@@ -6,14 +6,14 @@ from bs4 import BeautifulSoup
 import json
 import re
 from urllib.parse import unquote as decode
-from firebase import Firebase
+#from firebase import Firebase
 
 
 TELEGRAM_TOKEN = os.environ['TELEGRAM_TOKEN']
 bot = telebot.TeleBot(TELEGRAM_TOKEN)
 
-FIREBASE_TOKEN = os.environ['FIREBASE_TOKEN']
-f = Firebase('https://telegrambot-62912.firebaseio.com/', auth_token=FIREBASE_TOKEN)
+#FIREBASE_TOKEN = os.environ['FIREBASE_TOKEN']
+#f = Firebase('https://telegrambot-62912.firebaseio.com/', auth_token=FIREBASE_TOKEN)
 
 server = Flask(__name__)
 
@@ -143,7 +143,7 @@ def mes_detail(message):
     log += '\nname:' + str(message.from_user.first_name) + '\n' + str(message.from_user.last_name)
     log += '\nusername:' + str(message.from_user.username)
     bot.send_message(-1001230375545, log)
-    f.set({'test': 'Hello World!'})
+    #f.set({'test': 'Hello World!'})
 
 @bot.message_handler(commands=['start', 'help', 'leave'])
 def start(message):
