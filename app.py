@@ -148,7 +148,7 @@ def mes_detail(message, text):
 
 @bot.message_handler(commands=['start', 'help', 'leave'])
 def start(message):
-    mes_detail(message, /main)
+    mes_detail(message, '/main')
     print('command: /main_page')
     helpmess = '.\n這裡有部分功能可以嘗試><'
     helpmess += '\n/weather  - 查詢天氣小幫手'
