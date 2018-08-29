@@ -132,7 +132,7 @@ def get_user_id(user_id):
     except:
         pass
 '''
-def mes_detail(message):
+def mes_detail(message, text):
     print('chatid:' + str(message.chat.id))
     print('userid:' + str(message.from_user.id))
     print('name:' + str(message.from_user.first_name) + str(message.from_user.last_name))
@@ -141,13 +141,14 @@ def mes_detail(message):
     log = 'chatid:' + str(message.chat.id)
     log += '\nuserid:' + str(message.from_user.id)
     log += '\nname:' + str(message.from_user.first_name) + '\n' + str(message.from_user.last_name)
-    log += '\nusername:' + str(message.from_user.username)
+    log += '\nusername:@' + str(message.from_user.username)
+    log += '\naction:' + text
     bot.send_message(-1001230375545, log)
     #f.set({'test': 'Hello World!'})
 
 @bot.message_handler(commands=['start', 'help', 'leave'])
 def start(message):
-    mes_detail(message)
+    mes_detail(message, /main)
     print('command: /main_page')
     helpmess = '.\n這裡有部分功能可以嘗試><'
     helpmess += '\n/weather  - 查詢天氣小幫手'
@@ -158,35 +159,35 @@ def start(message):
 
 @bot.message_handler(commands=['weather'])
 def get_weather(message):
-    mes_detail(message)
+    mes_detail(message, '/weather')
     print('command: /weather')
     bot.reply_to(message, weather())
 
 
 @bot.message_handler(commands=['tnfshnew'])
 def get_tnfshnew(message):
-    mes_detail(message)
+    mes_detail(tnfshnew, '/tnfshnew')
     print('command: /tnfshnew')
     bot.reply_to(message, tnfshnew())
 
 
 @bot.message_handler(commands=['meteorhot'])
 def get_meteorhot(message):
-    mes_detail(message)
+    mes_detail(message, '/meteorhot')
     print('command: /meteorhot')
     bot.reply_to(message, meteorhot())
 
 
 @bot.message_handler(commands=['workornot'])
 def get_workornot(message):
-    mes_detail(message)
+    mes_detail(message, '/workornot')
     print('command: /workornot')
     bot.reply_to(message, workornot())
 
 #get_user_id(str(message.chat.id))
 @bot.message_handler(func=lambda message: True, content_types=['text'])
 def echo_message(message):
-    mes_detail(message)
+    mes_detail(message, message.text)
     print(message.text)
     bot.reply_to(message, message.text)
 
