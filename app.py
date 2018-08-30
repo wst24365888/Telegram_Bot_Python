@@ -28,7 +28,7 @@ def weather():
 
     weather_titles = soup.find('div', 'w01', 'pre')
     reply += weather_titles.text
-    reply += '離開: /leave'
+    reply += '↩️離開: /leave'
 
     return reply
 
@@ -51,7 +51,7 @@ def tnfshnew():
         reply += sesoup[i].find('a').string.strip('\n').strip(' ')
         reply += sesoup[i].find('a')['href'].strip('\n').strip(' ') + '\n'
 
-    reply += '\n\n離開: /leave'
+    reply += '\n\n↩️離開: /leave'
 
     return reply
 
@@ -101,14 +101,14 @@ def workornot():
     print(len(city))
     print(city[0].find('h2').text)
     if city[0].find('h2').text == '無停班停課訊息。':
-        reply += '\n目前無停班課資訊'
+        reply = '🚩目前無停班課資訊'
     else:
         for i in range(len(city)):
             reply += '\n' + city[i].text + ':'
             reply += detail[i].text
 
-    reply += '\n\n停班停課資訊來自:https://www.dgpa.gov.tw/typh/daily/nds.html'
-    reply += '\n離開: /leave'
+    reply += '\n\n📊停班停課資訊來自:https://www.dgpa.gov.tw/typh/daily/nds.html'
+    reply += '\n↩️離開: /leave'
 
     return reply
 
