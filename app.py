@@ -171,7 +171,7 @@ def get_weather(message):
 
 @bot.message_handler(commands=['tnfshnew'])
 def get_tnfshnew(message):
-    mes_detail(tnfshnew, '/tnfshnew')
+    mes_detail(message, '/tnfshnew')
     print('command: /tnfshnew')
     bot.reply_to(message, tnfshnew())
 
