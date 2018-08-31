@@ -112,6 +112,57 @@ def workornot():
 
     return reply
 
+
+def tbike():
+    reply =  '/t_ea - 查詢東區租借站概況'
+    reply += '\n/t_mw - 查詢中西區租借站概況'
+    reply += '\n資料來源:http://tbike.tainan.gov.tw/Portal/zh-TW/Station/List'
+    reply += '\n\n↩️離開: /leave'
+
+    return reply
+
+
+def t_ea():
+    reply = 'T-Bike(東區)租借站概況\n'
+
+    url = 'http://tbike.tainan.gov.tw/Portal/zh-TW/Station/List?districtIds=54'
+    resp = requests.get(url)
+    resp.encoding = 'utf8'
+    soup = BeautifulSoup(resp.text, 'html.parser')
+
+    sesoup = soup.find_all('div', 'tr-row')
+    #station = sesoup.find_all('a')
+
+    for i in range(len(sesoup)):
+        reply += '\n' + str(i+1) + '.' + sesoup[i].find('a').text + ':'
+        detail = sesoup[i].find_all('div')
+        reply += '可借車輛/可停車位:' + detail[2].text + '/' + detail[3].text
+
+    reply += '\n\n↩️離開: /leave'
+
+    return reply
+
+
+def t_mw():
+    reply = 'T-Bike(中西區)租借站概況\n'
+
+    url = 'http://tbike.tainan.gov.tw/Portal/zh-TW/Station/List?districtIds=51'
+    resp = requests.get(url)
+    resp.encoding = 'utf8'
+    soup = BeautifulSoup(resp.text, 'html.parser')
+
+    sesoup = soup.find_all('div', 'tr-row')
+    #station = sesoup.find_all('a')
+
+    for i in range(len(sesoup)):
+        reply += '\n' + str(i+1) + '.' + sesoup[i].find('a').text + ':'
+        detail = sesoup[i].find_all('div')
+        reply += '可借車輛/可停車位:' + detail[2].text + '/' + detail[3].text
+
+    reply += '\n\n↩️離開: /leave'
+
+    return reply
+
 '''
 def get_user_id(user_id):
 
@@ -149,6 +200,7 @@ def mes_detail(message, text):
     log += '\nusername:@' + str(message.from_user.username)
     log += '\naction:' + text
     bot.send_message(-1001230375545, log)
+    print('command: ' + text)
     #f.set({'test': 'Hello World!'})
 
 @bot.message_handler(commands=['start', 'help', 'leave'])
@@ -165,29 +217,44 @@ def start(message):
 @bot.message_handler(commands=['weather'])
 def get_weather(message):
     mes_detail(message, '/weather')
-    print('command: /weather')
     bot.reply_to(message, weather())
 
 
 @bot.message_handler(commands=['tnfshnew'])
 def get_tnfshnew(message):
     mes_detail(message, '/tnfshnew')
-    print('command: /tnfshnew')
     bot.reply_to(message, tnfshnew())
 
 
 @bot.message_handler(commands=['meteorhot'])
 def get_meteorhot(message):
     mes_detail(message, '/meteorhot')
-    print('command: /meteorhot')
     bot.reply_to(message, meteorhot())
 
 
 @bot.message_handler(commands=['workornot'])
 def get_workornot(message):
     mes_detail(message, '/workornot')
-    print('command: /workornot')
     bot.reply_to(message, workornot())
+
+
+@bot.message_handler(commands=['tbike'])
+def get_tbike(message):
+    mes_detail(message, '/tbike')
+    bot.reply_to(message, tbike())
+
+
+@bot.message_handler(commands=['t_ea'])
+def get_t_ea(message):
+    mes_detail(message, '/t_ea')
+    bot.reply_to(message, t_ea())
+
+
+@bot.message_handler(commands=['t_mw'])
+def get_t_mw(message):
+    mes_detail(message, '/t_mw')
+    bot.reply_to(message, t_mw())
+
 
 #get_user_id(str(message.chat.id))
 @bot.message_handler(func=lambda message: True, content_types=['text'])
