@@ -116,7 +116,7 @@ def workornot():
 def tbike():
     reply =  '/t_ea - 查詢東區租借站概況'
     reply += '\n/t_mw - 查詢中西區租借站概況'
-    reply += '\n資料來源:http://tbike.tainan.gov.tw/Portal/zh-TW/Station/List'
+    reply += '\n\n資料來源:http://tbike.tainan.gov.tw/Portal/zh-TW/Station/List'
     reply += '\n\n↩️離開: /leave'
 
     return reply
