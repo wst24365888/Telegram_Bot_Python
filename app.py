@@ -136,7 +136,7 @@ def t_ea():
     for i in range(len(sesoup)):
         reply += '\n' + str(i+1) + '.' + sesoup[i].find('a').text + ':'
         detail = sesoup[i].find_all('div')
-        reply += '可借車輛/可停車位:' + detail[2].text + '/' + detail[3].text
+        reply += '\n可借車輛/可停車位:' + detail[2].text + '/' + detail[3].text
 
     reply += '\n\n↩️離開: /leave'
 
@@ -157,7 +157,7 @@ def t_mw():
     for i in range(len(sesoup)):
         reply += '\n' + str(i+1) + '.' + sesoup[i].find('a').text + ':'
         detail = sesoup[i].find_all('div')
-        reply += '可借車輛/可停車位:' + detail[2].text + '/' + detail[3].text
+        reply += '\n可借車輛/可停車位:' + detail[2].text + '/' + detail[3].text
 
     reply += '\n\n↩️離開: /leave'
 
