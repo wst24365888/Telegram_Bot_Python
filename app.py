@@ -211,6 +211,7 @@ def start(message):
     helpmess += '\n/weather  - 查詢天氣小幫手'
     helpmess += '\n/tnfshnew - 查詢南一中新訊息'
     helpmess += '\n/workornot - 查詢停班課資訊'
+    helpmess += '\n/tbike - 查詢T-Bike租借站資訊'
     bot.reply_to(message, 'Hi, ' + message.from_user.first_name + helpmess)
 
 
