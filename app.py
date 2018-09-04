@@ -137,7 +137,7 @@ def t_ea():
     for i in range(len(sesoup)):
         reply += '\n' + str(i+1) + '.' + sesoup[i].find('a').text + ':'
         detail = sesoup[i].find_all('div')
-        reply += '\n' + detail[2].text + '/' + detail[3].text
+        reply += detail[2].text + '/' + detail[3].text
 
     reply += '\n\n↩️離開: /leave'
 
@@ -159,7 +159,7 @@ def t_mw():
     for i in range(len(sesoup)):
         reply += '\n' + str(i+1) + '.' + sesoup[i].find('a').text + ':'
         detail = sesoup[i].find_all('div')
-        reply += '\n' + detail[2].text + '/' + detail[3].text
+        reply += detail[2].text + '/' + detail[3].text
 
     reply += '\n\n↩️離開: /leave'
 
@@ -284,3 +284,4 @@ if __name__ == "__main__":
     server.run(host="0.0.0.0", port=int(os.environ.get('PORT', 5000)))
 #  set webhook
 #  https://api.telegram.org/bot{$token}/setWebhook?url={$webhook_url}
+#  傳訊息：https://api.telegram.org/bot{token}/sendMessage?chat_id={chatid}&text={訊息}。
