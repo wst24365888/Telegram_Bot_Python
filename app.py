@@ -124,7 +124,7 @@ def tbike():
 
 def t_ea():
     reply = 'T-Bike(東區)租借站概況\n'
-    reply += '可借車輛/可停車位:\n'
+    reply += '(可借車輛/可停車位)\n'
 
     url = 'http://tbike.tainan.gov.tw/Portal/zh-TW/Station/List?districtIds=54'
     resp = requests.get(url)
@@ -146,7 +146,7 @@ def t_ea():
 
 def t_mw():
     reply = 'T-Bike(中西區)租借站概況\n'
-    reply += '可借車輛/可停車位:\n'
+    reply += '(可借車輛/可停車位)\n'
 
     url = 'http://tbike.tainan.gov.tw/Portal/zh-TW/Station/List?districtIds=51'
     resp = requests.get(url)
