@@ -121,11 +121,15 @@ def tbike():
 
     return reply
 
-def t_ea():
-    reply = 'T-Bike(東區)租借站概況\n'
+def tbilesearch(area, areanum):
+    reply = 'T-Bike('
+    reply += area
+    reply += ')租借站概況\n'
     reply += '(可借車輛/可停車位)\n'
-
-    url = 'http://tbike.tainan.gov.tw/Portal/zh-TW/Station/List?districtIds=54'
+    print(reply)
+    url = 'http://tbike.tainan.gov.tw/Portal/zh-TW/Station/List?districtIds='
+    url += areanum
+    print(url)
     resp = requests.get(url)
     resp.encoding = 'utf8'
     soup = BeautifulSoup(resp.text, 'html.parser')
@@ -142,7 +146,7 @@ def t_ea():
 
     return reply
 
-
+'''
 def t_mw():
     reply = 'T-Bike(中西區)租借站概況\n'
     reply += '(可借車輛/可停車位)\n'
@@ -163,6 +167,7 @@ def t_mw():
     reply += '\n\n↩️離開: /leave'
 
     return reply
+'''
 
 '''
 def get_user_id(user_id):
@@ -261,7 +266,7 @@ def get_tbike(message):
 def get_t_ea(message):
     mes_detail(message, '/tbilesearch')
     if message.text.find('/t_rd') == 0:
-        bot.reply_to(message, t_ea())
+        bot.reply_to(message, tbilesearch('仁德區', '2'))
 
 
 #get_user_id(str(message.chat.id))
