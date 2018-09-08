@@ -121,7 +121,6 @@ def tbike():
 
     return reply
 
-
 def t_ea():
     reply = 'T-Bike(東區)租借站概況\n'
 
@@ -244,17 +243,23 @@ def get_tbike(message):
     mes_detail(message, '/tbike')
     bot.reply_to(message, tbike())
 
-
-@bot.message_handler(commands=['t_ea'])
+'''
+仁德區 rd 2
+南科   ts 7
+北區   nd 50
+中西區 wc 51
+南區   sd 52
+安平區 ap 53
+東區   ed 54
+安南區 an 55
+歸仁區 gr 56
+永康區 yk 85
+'''
+@bot.message_handler(commands=['t_rd', 't_ts', 't_nd', 't_wc', 't_sd', 't_ap', 't_ed', 't_an', 't_gr', 't_yk'])
 def get_t_ea(message):
-    mes_detail(message, '/t_ea')
-    bot.reply_to(message, t_ea())
-
-
-@bot.message_handler(commands=['t_mw'])
-def get_t_mw(message):
-    mes_detail(message, '/t_mw')
-    bot.reply_to(message, t_mw())
+    mes_detail(message, '/tbilesearch')
+    if commands == 't_rd':
+        bot.reply_to(message, t_ea())
 
 
 #get_user_id(str(message.chat.id))
