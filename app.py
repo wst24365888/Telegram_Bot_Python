@@ -260,7 +260,7 @@ def get_tbike(message):
 @bot.message_handler(commands=['t_rd', 't_ts', 't_nd', 't_wc', 't_sd', 't_ap', 't_ed', 't_an', 't_gr', 't_yk'])
 def get_t_ea(message):
     mes_detail(message, '/tbilesearch')
-    if commands == 't_rd':
+    if message.text.find('/t_rd') == 0:
         bot.reply_to(message, t_ea())
 
 
