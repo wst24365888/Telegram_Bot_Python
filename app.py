@@ -112,10 +112,18 @@ def workornot():
 
     return reply
 
-
 def tbike():
-    reply =  '/t_ea - 查詢東區租借站概況'
-    reply += '\n/t_mw - 查詢中西區租借站概況'
+    reply = '請選取欲查詢區域\n'
+    reply += '\n/t_rd - 仁德區'
+    reply += '\n/t_ts - 南科'
+    reply += '\n/t_nd - 北區'
+    reply += '\n/t_wc - 中西區'
+    reply += '\n/t_sd - 南區'
+    reply += '\n/t_ap - 安平區'
+    reply += '\n/t_ed - 東區'
+    reply += '\n/t_an - 安南區'
+    reply += '\n/t_gr - 歸仁區'
+    reply += '\n/t_yk - 永康區'
     reply += '\n\n資料來源:http://tbike.tainan.gov.tw/Portal/zh-TW/Station/List'
     reply += '\n\n↩️離開: /leave'
 
@@ -125,7 +133,7 @@ def tbilesearch(area, areanum):
     reply = 'T-Bike('
     reply += area
     reply += ')租借站概況\n'
-    reply += '(可借車輛/可停車位)\n'
+    reply += '(可借車輛 / 可停車位)\n'
     print(reply)
     url = 'http://tbike.tainan.gov.tw/Portal/zh-TW/Station/List?districtIds='
     url += areanum
@@ -138,9 +146,9 @@ def tbilesearch(area, areanum):
     #station = sesoup.find_all('a')
 
     for i in range(len(sesoup)):
-        reply += '\n' + str(i+1) + '.' + sesoup[i].find('a').text + ':'
+        reply += '\n' + str(i+1) + '.' + sesoup[i].find('a').text + ': '
         detail = sesoup[i].find_all('div')
-        reply += detail[2].text + '/' + detail[3].text
+        reply += detail[2].text + ' / ' + detail[3].text
 
     reply += '\n\n↩️離開: /leave'
 
@@ -267,7 +275,24 @@ def get_t_ea(message):
     mes_detail(message, '/tbilesearch')
     if message.text.find('/t_rd') == 0:
         bot.reply_to(message, tbilesearch('仁德區', '2'))
-
+    if message.text.find('/t_ts') == 0:
+        bot.reply_to(message, tbilesearch('南科', '7'))
+    elif message.text.find('/t_nd') == 0:
+        bot.reply_to(message, tbilesearch('北區', '50'))
+    elif message.text.find('/t_wc') == 0:
+        bot.reply_to(message, tbilesearch('中西區', '51'))
+    elif message.text.find('/t_sd') == 0:
+        bot.reply_to(message, tbilesearch('南區', '52'))
+    elif message.text.find('/t_ap') == 0:
+        bot.reply_to(message, tbilesearch('安平區', '53'))
+    elif message.text.find('/t_ed') == 0:
+        bot.reply_to(message, tbilesearch('東區', '54'))
+    elif message.text.find('/t_an') == 0:
+        bot.reply_to(message, tbilesearch('安南區', '55'))
+    elif message.text.find('/t_gr') == 0:
+        bot.reply_to(message, tbilesearch('歸仁區', '56'))
+    elif message.text.find('/t_yk') == 0:
+        bot.reply_to(message, tbilesearch('永康區', '85'))
 
 #get_user_id(str(message.chat.id))
 @bot.message_handler(func=lambda message: True, content_types=['text'])
