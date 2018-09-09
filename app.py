@@ -154,54 +154,6 @@ def tbilesearch(area, areanum):
 
     return reply
 
-'''
-def t_mw():
-    reply = 'T-Bike(中西區)租借站概況\n'
-    reply += '(可借車輛/可停車位)\n'
-
-    url = 'http://tbike.tainan.gov.tw/Portal/zh-TW/Station/List?districtIds=51'
-    resp = requests.get(url)
-    resp.encoding = 'utf8'
-    soup = BeautifulSoup(resp.text, 'html.parser')
-
-    sesoup = soup.find_all('div', 'tr-row')
-    #station = sesoup.find_all('a')
-
-    for i in range(len(sesoup)):
-        reply += '\n' + str(i+1) + '.' + sesoup[i].find('a').text + ':'
-        detail = sesoup[i].find_all('div')
-        reply += detail[2].text + '/' + detail[3].text
-
-    reply += '\n\n↩️離開: /leave'
-
-    return reply
-'''
-
-'''
-def get_user_id(user_id):
-
-    print(user_id)
-
-    path = 'users'
-
-    ids = []
-
-    try:
-        docs = database.collection(path).get()
-
-        for doc in docs:
-            ids.append(doc.to_dict()['id'])
-
-        if user_id not in ids:
-            doc_to_add = {
-                'id': user_id
-            }
-
-            doc_ref = database.document(path + '/user_' + str(user_id))
-            doc_ref.set(doc_to_add)
-    except:
-        pass
-'''
 def mes_detail(message, text):
     print('chatid:' + str(message.chat.id))
     print('userid:' + str(message.from_user.id))
