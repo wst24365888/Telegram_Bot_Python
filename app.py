@@ -97,9 +97,9 @@ def workornot():
 
     city = soup.find_all('td', headers="city_Name")
     detail = soup.find_all('td', headers="StopWorkSchool_Info")
-    print(city)
-    print(len(city))
-    print(city[0].find('h2').text)
+    #print(city)
+    #print(len(city))
+    #print(city[0].find('h2').text)
     if city[0].find('h2').text == '無停班停課訊息。':
         reply = '🚩目前無停班課資訊'
     else:
