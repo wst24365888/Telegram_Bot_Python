@@ -7,6 +7,7 @@ import json
 import re
 from urllib.parse import unquote as decode
 #from firebase import Firebase
+'''
 from hashlib import sha1
 import hmac
 from wsgiref.handlers import format_date_time
@@ -15,14 +16,14 @@ from time import mktime
 import base64
 from requests import request
 from pprint import pprint
-
+'''
 
 TELEGRAM_TOKEN = os.environ['TELEGRAM_TOKEN']
 bot = telebot.TeleBot(TELEGRAM_TOKEN)
-
+'''
 app_id = os.environ['PTXID']
 app_key = os.environ['PTXKEY']
-
+'''
 #FIREBASE_TOKEN = os.environ['FIREBASE_TOKEN']
 #f = Firebase('https://telegrambot-62912.firebaseio.com/', auth_token=FIREBASE_TOKEN)
 
