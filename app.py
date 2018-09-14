@@ -196,7 +196,9 @@ def mes_detail(message, text):
     #channalid = -1001230375545
     log = 'chatid:' + str(message.chat.id)
     log += '\nuserid:' + str(message.from_user.id)
-    log += '\nname:' + str(message.from_user.first_name) + '\n' + str(message.from_user.last_name)
+    log += '\nname:' + str(message.from_user.first_name)
+    if str(message.from_user.last_name) != 'None':
+        log += ' ' + str(message.from_user.last_name)
     log += '\nusername:@' + str(message.from_user.username)
     log += '\naction:' + text
     bot.send_message(-1001230375545, log)
