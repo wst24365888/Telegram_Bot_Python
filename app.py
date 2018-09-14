@@ -7,13 +7,46 @@ import json
 import re
 from urllib.parse import unquote as decode
 #from firebase import Firebase
+from hashlib import sha1
+import hmac
+from wsgiref.handlers import format_date_time
+from datetime import datetime
+from time import mktime
+import base64
+from requests import request
+from pprint import pprint
 
 
 TELEGRAM_TOKEN = os.environ['TELEGRAM_TOKEN']
 bot = telebot.TeleBot(TELEGRAM_TOKEN)
 
+app_id = os.environ['PTXID']
+app_key = os.environ['PTXKEY']
+
 #FIREBASE_TOKEN = os.environ['FIREBASE_TOKEN']
 #f = Firebase('https://telegrambot-62912.firebaseio.com/', auth_token=FIREBASE_TOKEN)
+
+class Auth():
+
+    def __init__(self, app_id, app_key):
+        self.app_id = app_id
+        self.app_key = app_key
+
+    def get_auth_header(self):
+        xdate = format_date_time(mktime(datetime.now().timetuple()))
+        hashed = hmac.new(self.app_key.encode('utf8'), ('x-date: ' + xdate).encode('utf8'), sha1)
+        signature = base64.b64encode(hashed.digest()).decode()
+
+        authorization = 'hmac username="' + self.app_id + '", ' + \
+                        'algorithm="hmac-sha1", ' + \
+                        'headers="x-date", ' + \
+                        'signature="' + signature + '"'
+        return {
+            'Authorization': authorization,
+            'x-date': format_date_time(mktime(datetime.now().timetuple())),
+            'Accept - Encoding': 'gzip'
+        }
+
 
 server = Flask(__name__)
 
